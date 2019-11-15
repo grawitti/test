@@ -24,7 +24,7 @@ void clear_bufers(const char *buf) {
 int nft_get_output(struct nft_ctx *nft) {
 	int rc = 0;
 	const char *output = nft_ctx_get_output_buffer(nft);
-	save_to_file("nftables.json", output);
+	// save_to_file("nftables.json", output);
 
 	if (strlen(output)) {
 		printf("\nThis is the current ruleset:\n| ");
@@ -185,10 +185,10 @@ int main() {
 	const char *family = "ip";
 	const char *tb_name = "nat";
 	const char *ch_name = "POSTROUTING";
-	if (nft_json_is_exists(nft, family, tb_name, NULL) != 0) {
-		printf("not found table: %s, or chain: %s \n", tb_name, ch_name);
-		return -1;
-	}
+	// if (nft_json_is_exists(nft, family, tb_name, NULL) != 0) {
+	// 	printf("not found table: %s, or chain: %s \n", tb_name, ch_name);
+	// 	return -1;
+	// }
 
 	json_error_t err;
 	json_t *jt_nft_array = json_array();
@@ -221,7 +221,7 @@ int main() {
 	json_object_set(root, "nftables", jt_nft_array);
 
 	json_dumpf(root, stdout, JSON_INDENT(4));
-	json_dump_file(root, "nftables.json", JSON_INDENT(4));
+	// json_dump_file(root, "nftables.json", JSON_INDENT(4));
 
 	char *list_cmd = json_dumps(root, 0);
 
